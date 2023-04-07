@@ -42,8 +42,8 @@ jobs:
       with:
         arguments: build
     
-  publish:
+  #publish:
     # this is useful for ordeing the jobs
     # here we say don't run them in parallel
-    needs: build
+   # needs: build
   
