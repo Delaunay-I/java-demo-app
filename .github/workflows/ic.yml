@@ -21,8 +21,12 @@ permissions:
 # the name is arbitrary
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    
+    # in order to test on all 3 different os
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ubunto-latest, windows-latest, macOS-latest]
 
     steps:
     # a predefined action
@@ -37,3 +41,9 @@ jobs:
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
+    
+  publish:
+    # this is useful for ordeing the jobs
+    # here we say don't run them in parallel
+    needs: build
+  
